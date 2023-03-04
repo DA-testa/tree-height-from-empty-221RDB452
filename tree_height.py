@@ -1,6 +1,5 @@
 import sys
 import threading
-
 def compute_height(n, parents):
     tree = {}
     for node, parent in enumerate(parents):
@@ -16,7 +15,6 @@ def compute_height(n, parents):
             return 0
         return max(height(child) for child in tree[node]) + 1
     return height(root)
-
 def main():
     try:
         input_type = input("Enter input type (F for file, I for keyboard): ")
@@ -26,7 +24,6 @@ def main():
                 n = int(f.readline())
                 parents = list(map(int, f.readline().split()))
         elif input_type == "I":
-            
             n = int(input())
             parents = list(map(int, input().split()))
         else:
@@ -35,7 +32,6 @@ def main():
 
     except Exception as e:
         print("Error:", e)
-
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
