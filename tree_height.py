@@ -1,29 +1,30 @@
-# python3
 import sys
 import threading
 def compute_height(n, parents):
-    heights = [0] * n
+    # Create the tree
+    tree = {}
     for i in range(n):
-        node = i
-        height = 0
-        while node != -1:
-            if heights[node] != 0:
-                height += heights[node]
-                break
-            height += 1
-            node = parents[node]
-        heights[i] = height
-    return max(heights)
+        if parents[i] == -1:
+            root = i
+        else:
+            parent = parents[i]
+            if parent in tree:
+                tree[parent].append(i)
+            else:
+                tree[parent] = [i]
+    def height(node):
+        if node not in tree:
+            return 0
+        return max(height(child) for child in tree[node]) + 1
+    
+    return height(root)
 def main():
-    try:
-        n = int(input("Enter the number of nodes in the tree: "))
-    except ValueError:
-        print("Invalid input. Please enter an integer.")
-        return
-    parents = list(map(int,input("Enter the parent of each node separated by spaces: ").split()))
-    print(compute_height(n,parents))
+    
+    n = int(input())
+    parents = list(map(int, input().split()))
+    print(compute_height(n, parents))
+
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-
 
