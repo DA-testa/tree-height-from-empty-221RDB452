@@ -44,17 +44,18 @@ def main():
                 n = int(f.readline())
                 parents = list(map(int, f.readline().split()))
         elif input_type == "I":
-            
+            # Read input from keyboard
             n = int(input())
             parents = list(map(int, input().split()))
         else:
             raise ValueError("Invalid input type. Please enter 'F' or 'I'.")
 
-        
+        # Compute and output tree height
         print(compute_height(n, parents))
 
     except Exception as e:
         print("Error:", e)
+
 
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
