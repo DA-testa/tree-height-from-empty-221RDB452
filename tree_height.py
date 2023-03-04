@@ -27,7 +27,9 @@ def main():
         print("Invalid input. Please enter an integer.")
         return
     parents = list(map(int,input("Enter the parent of each node separated by spaces: ").split()))
-    print(compute_height(n,parents))
+    height = compute_height(n,parents)
+    with open("height.txt", "w") as f:
+        f.write(str(height))
 
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
