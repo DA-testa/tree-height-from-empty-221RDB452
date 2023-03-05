@@ -1,30 +1,38 @@
-# python3
-
 import sys
 import threading
+import numpy
 
-
-def compute_height(n, parents):
-    # Write this function
-    max_height = 0
-    # Your code here
-    return max_height
-
+def compute_height(num_nodes, parents):
+    parent=numpy.zeros(num_nodes)
+    def height(i):
+        if parent[i] !=0:
+            return parent[i]
+        if parents[i] == -1:
+            parent[i] = 1
+        else:
+            parent[i]=height(parents[i]) +1
+        return parent[i]
+    
+    for i in range(num_nodes):
+        height(i)
+    return int(max(parent))
 
 def main():
-    # implement input form keyboard and from files
-    
-    # let user input file name to use, don't allow file names with letter a
-    # account for github input inprecision
-    
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
-    # call the function and output it's result
-
-
-# In Python, the default limit on recursion depth is rather low,
-# so raise it here for this problem. Note that to take advantage
-# of bigger stack, we have to launch the computation in a new thread.
+    mode = input()
+    if "F" in mode:
+        filename = input()
+        if "a" not in filename:
+           with open(str("test/"+filename), mode = "r") as f:
+               n = int(f.readline())
+               parentOfNode = list(map(int, f.readline().split()))
+        else:
+            print("error")
+    elif "I" in mode:
+        n = int(input())
+        parentOfNode = list(map(int, input().split()))
+    else: 
+        print("invalid mode.")
+    print(compute_height(n, parentOfNode))
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
