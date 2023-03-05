@@ -17,7 +17,7 @@ def compute_height(n, parents):
     return height(root)
 def main():
     try:
-        input_type = input("Enter input type (F for file, I for keyboard): ")
+        input_type = input("Enter input type (Please enter 'F' or 'I'): ")
         if input_type == "F":
             filename = input("Enter filename: ")
             with open(filename, "r") as f:
