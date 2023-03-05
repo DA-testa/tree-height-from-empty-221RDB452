@@ -18,7 +18,7 @@ def compute_height(n, parents):
 def main():
     mode = input()
       
-        if "F" in mode:
+    if "F" in mode:
             filename = input()
             if"a" not in filename:
               with open(str("test/"+filename), mode ="r") as f:
@@ -26,16 +26,14 @@ def main():
                 parents = list(map(int, f.readline().split()))
             else:
                 print("error")
-        elif "I" in mode:
+    elif "I" in mode:
             n = int(input())
             parents = list(map(int, input().split()))
-        else:
+    else:
             print("invalid mode.")
-        print(compute_height(n, parents))
-    except Exception as e:
-        print("Error:", e)
+    print(compute_height(n, parents))
+   
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-
 
