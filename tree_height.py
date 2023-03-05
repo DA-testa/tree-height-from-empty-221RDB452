@@ -3,7 +3,7 @@ import threading
 def compute_height(n, parents):
     tree = {}
     for node, parent in enumerate(parents):
-        if parent == -1:
+        if parent ==-1:
             root = node
         else:
             if parent in tree:
@@ -13,7 +13,7 @@ def compute_height(n, parents):
     def height(node):
         if node not in tree:
             return 0
-        return max(height(child) for child in tree[node]) + 1
+        return max(height(child) for child in tree[node])+1
     return height(root)
 def main():
     try:
@@ -29,7 +29,6 @@ def main():
         else:
             raise ValueError("Invalid input type. Please enter 'F' or 'I'.")
         print(compute_height(n, parents))
-
     except Exception as e:
         print("Error:", e)
 sys.setrecursionlimit(10**7)  # max depth of recursion
