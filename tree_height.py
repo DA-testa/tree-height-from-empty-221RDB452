@@ -17,7 +17,6 @@ def compute_height(n, parents):
     return height(root)
 def main():
     mode = input()
-      
     if "F" in mode:
             filename = input()
             if"a" not in filename:
