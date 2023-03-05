@@ -3,7 +3,7 @@ import threading
 import numpy
 
 def compute_height(num_nodes, parents):
-   parent=numpy.zeros(num_nodes)
+    parent=numpy.zeros(num_nodes)
     def height(i):
         if parent[i] !=0:
             return parent [i]
@@ -14,7 +14,7 @@ def compute_height(num_nodes, parents):
         return parent[i]
     for i in range(num_noddes):
         height(i)
-     return int(max(parent))
+    return int(max(parent))
 def main():
     mode = input()
     if "F" in mode:
@@ -34,4 +34,3 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-
