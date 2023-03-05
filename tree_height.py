@@ -1,10 +1,11 @@
 import sys
 import threading
+import os
 
 def compute_height(n, parents):
     tree = {}
     for node, parent in enumerate(parents):
-        if parent == -1:
+        if parent ==-1:
             root = node
         else:
             if parent in tree:
@@ -18,22 +19,21 @@ def compute_height(n, parents):
     return height(root)
 
 def main():
-    mode = input()
-    if mode not in ["F", "I"]:
-        print("Invalid mode.")
-        return
-    if mode == "F":
+    mode = input() 
+    if "F" in mode:
         filename = input()
-        if "a" not in filename:
-            with open(str("test/"+filename), mode="r") as f:
-                n = int(f.readline())
-                parents = list(map(int, f.readline().split()))
-        else:
-            print("Error: append mode not allowed.")
+        if not os.path.isfile(filename):
+            print("Error: File does not exist.")
             return
-    else:
+        with open(filename, mode="r") as f:
+            n = int(f.readline())
+            parents = list(map(int, f.readline().split()))
+    elif "I" in mode:
         n = int(input())
         parents = list(map(int, input().split()))
+    else:
+        print("Invalid mode.")
+        return
     print(compute_height(n, parents))
 
 sys.setrecursionlimit(10**7)  # max depth of recursion
