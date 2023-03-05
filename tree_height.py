@@ -30,7 +30,7 @@ def main():
     elif "I" in mode:
         n = int(input())
         parentOfNode = list(map(int, input().split()))
-    else:
+    else: 
         print("invalid mode.")
     print(compute_height(n, parentOfNode))
 sys.setrecursionlimit(10**7)  # max depth of recursion
