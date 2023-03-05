@@ -1,5 +1,5 @@
 import sys
-
+import threading
 def construct_tree(n, parents):
     tree = {}
     for node, parent in enumerate(parents):
