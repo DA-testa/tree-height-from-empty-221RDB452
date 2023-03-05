@@ -1,26 +1,23 @@
 import sys
 import threading
-def construct_tree(n, parents):
+def compute_height(n, parents):
     tree = {}
     for node, parent in enumerate(parents):
-        if parent == -1:
+        if parent ==-1:
             root = node
         else:
             if parent in tree:
                 tree[parent].append(node)
             else:
                 tree[parent] = [node]
-    return root, tree
-
-def compute_height(root, tree):
     def height(node):
         if node not in tree:
             return 0
-        return max(height(child) for child in tree[node]) + 1
+        return max(height(child) for child in tree[node])+1
     return height(root)
-
 def main():
     mode = input()
+      
     if "F" in mode:
             filename = input()
             if"a" not in filename:
@@ -39,5 +36,4 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-
 
