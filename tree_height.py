@@ -19,8 +19,8 @@ def main():
     mode = input()
     if "F" in mode:
             filename = input()
-            if"a" not in filename:
-              with open(str("test/"+filename), mode ="r") as f:
+            if "a" not in filename:
+              with open(str("test/"+filename), mode = "r") as f:
                 n = int(f.readline())
                 parents = list(map(int, f.readline().split()))
             else:
