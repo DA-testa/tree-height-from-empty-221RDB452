@@ -16,18 +16,21 @@ def compute_height(n, parents):
         return max(height(child) for child in tree[node])+1
     return height(root)
 def main():
-    try:
-        input_type = input("Please enter 'F' or 'I': ")
-        if input_type == "F":
-            filename = input("Enter filename: ")
-            with open(filename, "r") as f:
+    mode = input()
+      
+        if "F" in mode:
+            filename = input()
+            if"a" not in filename:
+              with open(str("test/"+filename), mode ="r") as f:
                 n = int(f.readline())
                 parents = list(map(int, f.readline().split()))
-        elif input_type == "I":
+            else:
+                print("error")
+        elif "I" in mode:
             n = int(input())
             parents = list(map(int, input().split()))
         else:
-            raise ValueError("Invalid input type. Please enter 'F' or 'I'.")
+            print("invalid mode.")
         print(compute_height(n, parents))
     except Exception as e:
         print("Error:", e)
