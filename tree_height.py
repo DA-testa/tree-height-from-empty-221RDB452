@@ -21,20 +21,23 @@ def compute_height(root, tree):
 
 def main():
     mode = input()
-    if mode == 'F':
-        filename = input()
-        with open(filename, 'r') as f:
-            n = int(f.readline())
-            parents = list(map(int, f.readline().split()))
-    elif mode == 'I':
-        n = int(input())
-        parents = list(map(int, input().split()))
+    if "F" in mode:
+            filename = input()
+            if"a" not in filename:
+              with open(str("test/"+filename), mode ="r") as f:
+                n = int(f.readline())
+                parents = list(map(int, f.readline().split()))
+            else:
+                print("error")
+    elif "I" in mode:
+            n = int(input())
+            parents = list(map(int, input().split()))
     else:
-        print("Invalid mode.")
-        return
-    root, tree = construct_tree(n, parents)
-    print(compute_height(root, tree))
-
+            print("invalid mode.")
+    print(compute_height(n, parents))
+   
 sys.setrecursionlimit(10**7)  # max depth of recursion
-main()
+threading.stack_size(2**27)   # new thread will get stack of such size
+threading.Thread(target=main).start()
+
 
